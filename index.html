@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"360ak.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://360ak.github.io/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://360ak.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/05/23/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-23 17:49:30" itemprop="dateCreated datePublished" datetime="2021-05-23T17:49:30+08:00">2021-05-23</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/05/23/hello-world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/23/hello-world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/05/07/ACTF2020fungame/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/07/ACTF2020fungame/" class="post-title-link" itemprop="url">ACTF2020fungame</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-07 19:14:25 / Modified: 20:48:19" itemprop="dateCreated datePublished" datetime="2021-05-07T19:14:25+08:00">2021-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RE/" itemprop="url" rel="index"><span itemprop="name">RE</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/05/07/ACTF2020fungame/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/07/ACTF2020fungame/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="0x01-EP查看有无加壳-sake"><a href="#0x01-EP查看有无加壳-sake" class="headerlink" title="0x01 EP查看有无加壳 :sake:"></a><strong>0x01 EP查看有无加壳</strong> :sake:</h2><p><img src="ACTF2020fungame.assets/0.png" alt="0"></p>
+<p>无壳，使用IDA打开</p>
+<h2 id="0x02-分析主要函数的内容-dancer"><a href="#0x02-分析主要函数的内容-dancer" class="headerlink" title="0x02 分析主要函数的内容   :dancer:"></a><strong>0x02 分析主要函数的内容</strong>   :dancer:</h2><p><img src="ACTF2020fungame.assets/2.png" alt="2"></p>
+<p>通过异或得到前面的16个字符</p>
+<p><img src="ACTF2020fungame.assets/3.png" alt="3"></p>
+<p>发现是栈溢出，函数先把flag复制到只能容纳12个字节的Destination,发生溢出，第二次复制进入X</p>
+<p><img src="ACTF2020fungame.assets/5.png" alt="5"></p>
+<p>白给的溢出  :dancers:</p>
+<h2 id="0x03-构建playload-sailboat"><a href="#0x03-构建playload-sailboat" class="headerlink" title="0x03 构建playload  :sailboat:"></a><strong>0x03 构建playload</strong>  :sailboat:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">y1=[<span class="number">0x23</span>,<span class="number">0x61</span>,<span class="number">0x3E</span>,<span class="number">0x69</span>,<span class="number">0x54</span>,<span class="number">0x41</span>,<span class="number">0x18</span>,<span class="number">0x4D</span>,<span class="number">0x6E</span>,<span class="number">0x3B</span>,<span class="number">0x65</span>,<span class="number">0x53</span>,<span class="number">0x30</span>,<span class="number">0x79</span>,<span class="number">0x45</span>,<span class="number">0x5B</span>]</span><br><span class="line">y2=[<span class="number">0x71</span>,<span class="number">0x04</span>,<span class="number">0x61</span>,<span class="number">0x58</span>,<span class="number">0x27</span>,<span class="number">0x1E</span>,<span class="number">0x4B</span>,<span class="number">0x22</span>,<span class="number">0x5E</span>,<span class="number">0x64</span>,<span class="number">0x3</span>,<span class="number">0x26</span>,<span class="number">0x5E</span>,<span class="number">0x17</span>,<span class="number">0x3C</span>,<span class="number">0x7A</span>]</span><br><span class="line">flag=<span class="string">&#x27;flag&#123;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y1)):</span><br><span class="line">	flag+=<span class="built_in">chr</span>(y1[i]^y2[i])</span><br><span class="line">flag+=<span class="built_in">chr</span>(<span class="number">0x40</span>)+<span class="built_in">chr</span>(<span class="number">0x23</span>)+<span class="built_in">chr</span>(<span class="number">0x3D</span>)+<span class="built_in">str</span>(base64.b64decode(<span class="string">&#x27;YTFzMF9wV24=&#x27;</span>),encoding = <span class="string">&quot;utf-8&quot;</span>) <span class="comment">#bytes转str</span></span><br><span class="line"><span class="built_in">print</span>(flag+<span class="string">&#x27;&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="ACTF2020fungame.assets/7-16.png" alt="7-16"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Re_1s_So0_funny!@#=a1s0_pWn&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/29/SCTF2019creakme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/29/SCTF2019creakme/" class="post-title-link" itemprop="url">SCTF2019creakme</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-29 19:06:48" itemprop="dateCreated datePublished" datetime="2021-04-29T19:06:48+08:00">2021-04-29</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/29/SCTF2019creakme/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/29/SCTF2019creakme/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/29/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/29/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" class="post-title-link" itemprop="url">解决hexo图片无法显示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-29 11:06:19" itemprop="dateCreated datePublished" datetime="2021-04-29T11:06:19+08:00">2021-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-07 19:48:11" itemprop="dateModified" datetime="2021-05-07T19:48:11+08:00">2021-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/29/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/29/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p> <strong>解决方法链接</strong>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44708662/article/details/105738361">https://blog.csdn.net/weixin_44708662/article/details/105738361</a></p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>先将Myblog-&gt;node_modules-&gt;hexo-asset-image文件夹删除</p>
+<p>在Myblog-&gt;node_modules 页面使用git命令 ： npm install <a target="_blank" rel="noopener" href="https://github.com/7ym0n/hexo-asset-image">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/29/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/29/test/" class="post-title-link" itemprop="url">test</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-29 10:52:28 / Modified: 11:13:50" itemprop="dateCreated datePublished" datetime="2021-04-29T10:52:28+08:00">2021-04-29</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/29/test/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/29/test/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="test.assets/1.jpg" alt="1"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/26/GWCTF2019re3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/26/GWCTF2019re3/" class="post-title-link" itemprop="url">GWCTF2019re3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-26 14:33:25 / Modified: 19:17:36" itemprop="dateCreated datePublished" datetime="2021-04-26T14:33:25+08:00">2021-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RE/" itemprop="url" rel="index"><span itemprop="name">RE</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/26/GWCTF2019re3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/GWCTF2019re3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1lZr8Cqf8FOuwOU-x2J3yVQ">https://pan.baidu.com/s/1lZr8Cqf8FOuwOU-x2J3yVQ</a><br>提取码：myh6 </p>
+<h2 id="知识点总结：-​-vertical-traffic-light"><a href="#知识点总结：-​-vertical-traffic-light" class="headerlink" title="知识点总结： ​ :vertical_traffic_light:"></a>知识点总结： ​ :vertical_traffic_light:</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangmiaoping23/article/details/8949290">AES逆向加密</a></p>
+<p>ECB模式 平均分组 每组互不干扰 </p>
+<p>CBC模式 平均分组 改明文和前一个密文异或之后再进行加密 所以需要一个初始化数组对第一组异或</p>
+<p>一般来说AES加密前会调用一个函数对密匙进行拓展 然后才会处理明</p>
+<h2 id="0X01-查看有无加壳-meat-on-bone"><a href="#0X01-查看有无加壳-meat-on-bone" class="headerlink" title="0X01 查看有无加壳  :meat_on_bone:"></a><strong>0X01 查看有无加壳</strong>  :meat_on_bone:</h2><p><img src="GWCTF2019re3.assets/0.png" alt="0"></p>
+<p>没有加壳，64位文件</p>
+<h2 id="0x02-使用IDA64打开文件-key"><a href="#0x02-使用IDA64打开文件-key" class="headerlink" title="0x02 使用IDA64打开文件 :key:"></a><strong>0x02 使用IDA64打开文件</strong> :key:</h2><ul>
+<li>找到main函数, <strong>F5</strong> 反编译，进行代码分析</li>
+</ul>
+<p><img src="GWCTF2019re3.assets/1.png" alt="1"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall __noreturn <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> i; <span class="comment">// [sp+8h] [bp-48h]@4</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [sp+20h] [bp-30h]@1</span></span><br><span class="line">  __int64 v5; <span class="comment">// [sp+48h] [bp-8h]@1</span></span><br><span class="line"></span><br><span class="line">  v5 = *MK_FP(__FS__, <span class="number">40LL</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%39s&quot;</span>, &amp;s, a3);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="built_in">strlen</span>(&amp;s) != <span class="number">32</span> ) <span class="comment">//输入的长度为32</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Wrong!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  mprotect((<span class="keyword">void</span> *)<span class="number">0x400000</span>, <span class="number">0xF000</span>uLL, <span class="number">7</span>);  <span class="comment">//修改文件为可读可执行</span></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">223</span>; ++i )  <span class="comment">//SMC自修改代码，异或0x99</span></span><br><span class="line">    *((_BYTE *)sub_402219 + i) ^= <span class="number">0x99</span>u;</span><br><span class="line">  sub_40207B(&amp;unk_603170, <span class="number">61440LL</span>);</span><br><span class="line">  sub_402219();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>sub_4022190函数有异或，我们查看</li>
+</ul>
+<p><img src="GWCTF2019re3.assets/3.png" alt="3"></p>
+<ul>
+<li>选中后我们按  <strong><code>C</code></strong> 强制（ <strong><code>Force</code></strong> ）分析代码</li>
+</ul>
+<p><img src="GWCTF2019re3.assets/4.png" alt="4"></p>
+<p>使用Findecrypt插件查看一下加密算法发现很多加密</p>
+<ul>
+<li>我们查看sub_40207B()函数</li>
+</ul>
+<p><img src="GWCTF2019re3.assets/5.png" alt="5"></p>
+<p>MD5加密，第10行和14行的MD5加密有用<br>内容大体将base64密码表进行两次sub_401CF9加密然后赋值给参数a1<br>这里没有用到用户输入，可以动调一下获得加密后的a1<br>IDA先在sub_40207B()函数执行后一条下断点</p>
+<h2 id="0x03-写个脚本做循环对比就行了-​-santa"><a href="#0x03-写个脚本做循环对比就行了-​-santa" class="headerlink" title="**0x03  写个脚本做循环对比就行了 ** ​ :santa:"></a>**0x03  写个脚本做循环对比就行了 ** ​ :santa:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;so.in&#x27;</span>)</span><br><span class="line">a = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    s = f.readline()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">        a += <span class="built_in">chr</span>(<span class="built_in">int</span>(s[j*<span class="number">3</span>:j*<span class="number">3</span>+<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line">b = <span class="string">&#x27;&#x27;</span></span><br><span class="line">s = f.readline()</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">    b += <span class="built_in">chr</span>(<span class="built_in">int</span>(s[j*<span class="number">3</span>:j*<span class="number">3</span>+<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line"><span class="built_in">print</span> a,b</span><br><span class="line">_aes = AES.new(b,mode = AES.MODE_ECB)</span><br><span class="line"><span class="built_in">print</span> _aes.decrypt(a)</span><br></pre></td></tr></table></figure>
+
+<p>so.in内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BC 0A AD C0 14 7C 5E CC E0 B1 40 BC 9C 51 D5 2B</span><br><span class="line">46 B2 B9 43 4D E5 32 4B AD 7F B4 B3 9C DB 4B 5B</span><br><span class="line">CB 8D 49 35 21 B4 7A 4C C1 AE 7E 62 22 92 66 CE</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/22/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/22/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9/" class="post-title-link" itemprop="url">从零开始python学习第五天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-22 19:05:21 / Modified: 20:21:13" itemprop="dateCreated datePublished" datetime="2021-04-22T19:05:21+08:00">2021-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">python学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/22/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/22/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>从零考试学习python内容 99%来自于python大神 python-jack的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113640664">知乎文章 </a>再结合本人的实际情况进行学习，严格来说这是JACK老师的内容，只不过再此基础上，我增添了一些我在CTF解题过程中遇到的python脚本实际情况，再次感谢JACK老师</p>
+<p>学习的内容来自于:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126324262">https://zhuanlan.zhihu.com/p/126324262</a></p>
+</blockquote>
+<h1 id="第010课：函数和字符串的应用"><a href="#第010课：函数和字符串的应用" class="headerlink" title="第010课：函数和字符串的应用"></a><strong>第010课：函数和字符串的应用</strong></h1><p>前面两节课，我们介绍了函数和字符串。在讲解今天的内容之前，先来回答一个可能会让大家感到费解的问题：为什么字符串类型（<code>str</code>）可以通过调用方法的方式进行操作，而之前我们用到的数值类型（如<code>int</code>、<code>float</code>）却没有可以调用的方法。在Python中，数值类型是标量类型，也就是说这种类型的变量没有可以访问的内部结构；而字符串类型是一种结构化的、非标量类型，所以才会有一系列的方法可供调用。如果对这一点感到困惑，那就继续学习吧，等学习完面向对象编程的知识后，你就能找到这些问题的答案了。</p>
+<p><strong>一些案例</strong> ​ </p>
+<h2 id="例子1：设计一个生成指定长度验证码的函数。-a"><a href="#例子1：设计一个生成指定长度验证码的函数。-a" class="headerlink" title="**例子1：设计一个生成指定长度验证码的函数。 :a: **"></a>**例子1：设计一个生成指定长度验证码的函数。 :a: **</h2><blockquote>
+<p><strong>说明</strong>：验证码由数字和英文大小写字母构成。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">ALL_CHARS = <span class="string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_code</span>(<span class="params">code_len=<span class="number">4</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成指定长度的验证码</span></span><br><span class="line"><span class="string">    :param code_len: 验证码的长度(默认4个字符)</span></span><br><span class="line"><span class="string">    :return: 由大小写英文字母和数字构成的随机验证码字符串</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    code = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(code_len):</span><br><span class="line">        <span class="comment"># 产生0到字符串长度减1范围的随机数作为索引</span></span><br><span class="line">        index = random.randrange(<span class="number">0</span>, <span class="built_in">len</span>(ALL_CHARS))</span><br><span class="line">        <span class="comment"># 利用索引运算从字符串中取出字符并进行拼接</span></span><br><span class="line">        code += ALL_CHARS[index]</span><br><span class="line">    <span class="keyword">return</span> code</span><br></pre></td></tr></table></figure>
+
+<p>我们用下面的代码生成10组随机验证码来测试上面的函数( <strong>没有下面的代码就无法运行</strong> )。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(generate_code())</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9.assets/0.png" alt="0"></p>
+<p>上面的函数其实还有一种更为简单的写法，直接利用<code>random</code>模块的随机抽样函数从字符串中取出指定数量的字符，然后利用字符串的<code>join</code>方法将选中的那些字符拼接起来。此外，可以利用Python标准库中的<code>string</code> 模块来获得数字和英文字母的字面常量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">ALL_CHARS = string.digits + string.ascii_letters</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_code</span>(<span class="params">code_len=<span class="number">4</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成指定长度的验证码</span></span><br><span class="line"><span class="string">    :param code_len: 验证码的长度(默认4个字符)</span></span><br><span class="line"><span class="string">    :return: 由大小写英文字母和数字构成的随机验证码字符串</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(random.choices(ALL_CHARS, k=code_len))</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(generate_code())</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9.assets/1.png" alt="1"></p>
+<blockquote>
+<p><strong>说明</strong>：<code>random</code>模块的<code>sample</code>和<code>choices</code>函数都可以实现随机抽样，<code>sample</code>实现无放回抽样，这意味着抽样取出的字符是不重复的；<code>choices</code>实现有放回抽样，这意味着可能会重复选中某些字符。这两个函数的第一个参数代表抽样的总体，而参数<code>k</code>代表抽样的数量。</p>
+</blockquote>
+<h2 id="例子2：设计一个函数返回给定文件名的后缀名。-b"><a href="#例子2：设计一个函数返回给定文件名的后缀名。-b" class="headerlink" title="例子2：设计一个函数返回给定文件名的后缀名。 :b:"></a><strong>例子2：设计一个函数返回给定文件名的后缀名。</strong> :b:</h2><blockquote>
+<p><strong>说明</strong>：文件名通常是一个字符串，而文件的后缀名指的是文件名中最后一个<code>.</code>后面的部分，也称为文件的扩展名，它是某些操作系统用来标记文件类型的一种机制，例如在Windows系统上，后缀名<code>exe</code>表示这是一个可执行程序，而后缀名<code>txt</code>表示这是一个纯文本文件。需要注意的是，在Linux和macOS系统上，文件名可以以<code>.</code>开头，表示这是一个隐藏文件，像<code>.gitignore</code>这样的文件名，<code>.</code>后面并不是后缀名，这个文件没有后缀名或者说后缀名为<code>&#39;&#39;</code>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_suffix</span>(<span class="params">filename</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;获取文件名的后缀名</span></span><br><span class="line"><span class="string">    :param filename: 文件名</span></span><br><span class="line"><span class="string">    :return: 文件的后缀名</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 从字符串中逆向查找.出现的位置</span></span><br><span class="line">    pos = filename.rfind(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    <span class="comment"># 通过切片操作从文件名中取出后缀名</span></span><br><span class="line">    <span class="keyword">return</span> filename[pos + <span class="number">1</span>:] <span class="keyword">if</span> pos &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以用下面的代码对上面的函数做一个简单的测验。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(get_suffix(<span class="string">&#x27;readme.txt&#x27;</span>))       <span class="comment"># txt</span></span><br><span class="line"><span class="built_in">print</span>(get_suffix(<span class="string">&#x27;readme.txt.md&#x27;</span>))    <span class="comment"># md</span></span><br><span class="line"><span class="built_in">print</span>(get_suffix(<span class="string">&#x27;.readme&#x27;</span>))          <span class="comment">#</span></span><br><span class="line"><span class="built_in">print</span>(get_suffix(<span class="string">&#x27;readme.&#x27;</span>))          <span class="comment">#</span></span><br><span class="line"><span class="built_in">print</span>(get_suffix(<span class="string">&#x27;readme&#x27;</span>))           <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9.assets/2.png" alt="2"></p>
+<p>上面的<code>get_suffix</code>函数还有一个更为便捷的实现方式，就是直接使用<code>os.path</code>模块的<code>splitext</code>函数，这个函数会将文件名拆分成带路径的文件名和扩展名两个部分，然后返回一个二元组（下节课会讲到元组），二元组中的第二个元素就是文件的后缀名（包含<code>.</code>），如果要去掉后缀名中的<code>.</code>，可以做一个字符串的切片操作，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> splitext</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_suffix</span>(<span class="params">filename</span>):</span></span><br><span class="line">    <span class="keyword">return</span> splitext(filename)[<span class="number">1</span>][<span class="number">1</span>:]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="例子3：在终端中显示跑马灯（滚动）文字。-cat"><a href="#例子3：在终端中显示跑马灯（滚动）文字。-cat" class="headerlink" title="例子3：在终端中显示跑马灯（滚动）文字。 :cat:"></a>例子3：在终端中显示跑马灯（滚动）文字。 :cat:</h2><blockquote>
+<p><strong>说明</strong>：实现跑马灯文字的原理非常简单，把当前字符串的第一个字符放到要输出的内容的最后面，把从第二个字符开始后面的内容放到要输出的内容的最前面，通过循环重复这个操作，就可以看到滚动起来的文字。两次循环之间的间隔可以通过<code>time</code>模块的<code>sleep</code>函数来实现，而清除屏幕上之前的输出可以使用<code>os</code>模块的<code>system</code>函数调用系统清屏命令来实现。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;北 京 欢 迎 你 为 你 开 天 辟 地           &#x27;</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># Windows清除屏幕上的输出</span></span><br><span class="line">    <span class="comment"># os.system(&#x27;cls&#x27;)  </span></span><br><span class="line">    <span class="comment"># macOS清除屏幕上的输出</span></span><br><span class="line">    os.system(<span class="string">&#x27;clear&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(content)</span><br><span class="line">    <span class="comment"># 休眠0.2秒（200毫秒）</span></span><br><span class="line">    time.sleep(<span class="number">0.2</span>)</span><br><span class="line">    content = content[<span class="number">1</span>:] + content[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bpython%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9.assets/4.png" alt="4"></p>
+<blockquote>
+<p><strong>提示</strong>：我们之前建议大家暂时用VS Code来编写Python代码，如果你已经提前开始使用PyCharm了，需要提醒大家，PyCharm的运行窗口无法用上面的方式做清屏处理。建议在“命令行提示符”或“终端”（PyCharm中的“Terminal”相当于就是Windows系统的“命令行提示符”或macOS系统的“终端”）中运行该程序。</p>
+</blockquote>
+<h2 id="简单的总结-european-post-office"><a href="#简单的总结-european-post-office" class="headerlink" title="简单的总结 :european_post_office:"></a><strong>简单的总结</strong> :european_post_office:</h2><p>在写代码尤其是开发商业项目的时候，一定要有意识的<strong>将相对独立且重复出现的功能封装成函数</strong>，这样不管是自己还是团队的其他成员都可以通过调用函数的方式来使用这些功能。字符串是非常重要的数据类型，<strong>字符串的常用运算和方法需要掌握</strong>，因为一般的商业项目中，处理字符串比处理数值的操作要更多。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/22/MRCTF%E5%BC%82%E6%88%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/22/MRCTF%E5%BC%82%E6%88%96/" class="post-title-link" itemprop="url">MRCTF异或</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-22 11:19:56 / Modified: 11:55:34" itemprop="dateCreated datePublished" datetime="2021-04-22T11:19:56+08:00">2021-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RE/" itemprop="url" rel="index"><span itemprop="name">RE</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/22/MRCTF%E5%BC%82%E6%88%96/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/22/MRCTF%E5%BC%82%E6%88%96/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="0x01-使用EP查看文件是否加壳-key"><a href="#0x01-使用EP查看文件是否加壳-key" class="headerlink" title="0x01 使用EP查看文件是否加壳  :key:"></a><strong>0x01 使用EP查看文件是否加壳</strong>  :key:</h2><p><img src="MRCTF%E5%BC%82%E6%88%96.assets/2.png" alt="2"></p>
+<p>没有加壳，32位文件</p>
+<hr>
+<h2 id="0x02-使用IDA32位打开文件-chart-with-downwards-trend"><a href="#0x02-使用IDA32位打开文件-chart-with-downwards-trend" class="headerlink" title="0x02 使用IDA32位打开文件  :chart_with_downwards_trend:"></a><strong>0x02 使用IDA32位打开文件</strong>  :chart_with_downwards_trend:</h2><p><img src="MRCTF%E5%BC%82%E6%88%96.assets/1.png" alt="1"></p>
+<p><strong><code>Shift</code></strong> + <strong><code>F12</code></strong> 查找关键函数,然后F5反编译</p>
+<p><img src="MRCTF%E5%BC%82%E6%88%96.assets/8.png" alt="8"></p>
+<p>第十九行可知v0和byte_4212c0进行异或，得到byte_41EA08输出正确</p>
+<p>直接进入byte_41EA08函数查看内容</p>
+<p>得到异或内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=&quot;MSAWB~FXZ:J:`tQJ\&quot;N@ bpdd&#125;8g&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<hr>
+<h2 id="0x03-开始构建异或脚本-​-hammer"><a href="#0x03-开始构建异或脚本-​-hammer" class="headerlink" title="0x03 开始构建异或脚本 ​ :hammer:"></a>0x03 开始构建异或脚本 ​ :hammer:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;MSAWB~FXZ:J:`tQJ\&quot;N@ bpdd&#125;8g&quot;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a)):</span><br><span class="line">    flag += <span class="built_in">chr</span>(i ^<span class="built_in">ord</span>(a[i]))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="MRCTF%E5%BC%82%E6%88%96.assets/3.png" alt="3"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;@_R3@1ly_E2_R3verse!&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/20/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/20/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="post-title-link" itemprop="url">从零开始学python第四天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-20 21:16:59" itemprop="dateCreated datePublished" datetime="2021-04-20T21:16:59+08:00">2021-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-21 20:47:36" itemprop="dateModified" datetime="2021-04-21T20:47:36+08:00">2021-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">python学习</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/20/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/20/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>从零考试学习python内容 99%来自于python大神 python-jack的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113640664">知乎文章  </a> 再结合本人的实际情况进行学习，严格来说这是JACK老师的内容，只不过再此基础上，我增添了一些我在CTF解题过程中遇到的python脚本实际情况，再次感谢JACK老师</p>
+<p>学习的内容来自于:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/123384479">https://zhuanlan.zhihu.com/p/123384479</a></p>
+</blockquote>
+<h2 id="字符串的定义"><a href="#字符串的定义" class="headerlink" title="字符串的定义"></a><strong>字符串的定义</strong></h2><p>所谓<strong>字符串</strong>，就是<strong>由零个或多个字符组成的有限序列</strong>，一般记为：</p>
+<p><img src="https://www.zhihu.com/equation?tex=s=a_%7B1%7Da_%7B2%7D%5Cdots+a_%7Bn%7D(0%5Cleq+n+%5Cleq+%5Cinfty)" alt="[公式]"></p>
+<p>在Python程序中，如果我们把单个或多个字符用 <strong><code>单引号</code></strong> 或者 <strong><code>双引号</code></strong>  包围起来，就可以表示一个字符串。字符串中的字符可以是特殊符号、英文字母、中文字符、日文的平假名或片假名、希腊字母、<a href="https://link.zhihu.com/?target=http://www.ruanyifeng.com/blog/2017/04/emoji.html">Emoji字符</a>等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;hello, world!&#x27;</span></span><br><span class="line">s2 = <span class="string">&quot;你好，世界！&quot;</span></span><br><span class="line"><span class="built_in">print</span>(s1, s2)</span><br><span class="line"><span class="comment"># 以三个双引号或单引号开头的字符串可以折行</span></span><br><span class="line">s3 = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello, </span></span><br><span class="line"><span class="string">world!</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s3, end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：<code>print</code>函数中的<code>end=&#39;&#39;</code>表示输出后不换行，即将默认的结束符<code>\n</code>（换行符）更换为<code>&#39;&#39;</code>（空字符）。</p>
+</blockquote>
+<hr>
+<h2 id="转义字符和原始字符串"><a href="#转义字符和原始字符串" class="headerlink" title="转义字符和原始字符串"></a><strong>转义字符和原始字符串</strong></h2><p>可以在字符串中使用<code>\</code>（反斜杠）来表示转义，也就是说<code>\</code>后面的字符不再是它原来的意义，例如：<code>\n</code>不是代表反斜杠和字符<code>n</code>，而是表示换行；<code>\t</code>也不是代表反斜杠和字符<code>t</code>，而是表示制表符。所以如果字符串本身又包含了<code>&#39;</code>、<code>&quot;</code>、<code>\</code>这些特殊的字符，必须要通过<code>\</code>进行转义处理。例如需要一个带单引号或反斜杠的字符串，可以用如下所示的方法进行处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 头尾带单引号的hello, world!</span></span><br><span class="line">s1 = <span class="string">&#x27;\&#x27;hello, world!\&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s1)</span><br><span class="line"><span class="comment"># 头尾带反斜杠的hello, world!</span></span><br><span class="line">s2 = <span class="string">&#x27;\\hello, world!\\&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s2)</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/0.png" alt="0"></p>
+<p>Python中的字符串可以<code>r</code>或<code>R</code>开头，这种字符串被称为原始字符串，意思是字符串中的每个字符都是它本来的含义，没有所谓的转义字符。例如，在字符串<code>&#39;hello\n&#39;</code>中，<code>\n</code>表示换行；而在<code>r&#39;hello\n&#39;</code>中，<code>\n</code>不再表示换行，就是反斜杠和字符<code>n</code>。大家可以运行下面的代码，看看会输出什么。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字符串s1中\t是制表符，\n是换行符</span></span><br><span class="line">s1 = <span class="string">&#x27;\time up \now&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s1)</span><br><span class="line"><span class="comment"># 字符串s2中没有转义字符，每个字符都是原始含义</span></span><br><span class="line">s2 = <span class="string">r&#x27;\time up \now&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s2)</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/1.png" alt="1"></p>
+<p>Python中还允许在<code>\</code>后面还可以跟一个八进制或者十六进制数来表示字符，例如<code>\141</code>和<code>\x61</code>都代表小写字母<code>a</code>，前者是八进制的表示法，后者是十六进制的表示法。另外一种表示字符的方式是在<code>\u</code>后面跟Unicode字符编码，例如<code>\u9a86\u660a</code>代表的是中文“骆昊”。运行下面的代码，看看输出了什么。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;\141\142\143\x61\x62\x63&#x27;</span></span><br><span class="line">s2 = <span class="string">&#x27;\u9a86\u660a&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s1, s2)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="字符串的运算"><a href="#字符串的运算" class="headerlink" title="字符串的运算"></a><strong>字符串的运算</strong></h2><p>Python为字符串类型提供了非常丰富的运算符，我们可以使用<code>+</code>运算符来实现字符串的拼接，可以使用<code>*</code>运算符来重复一个字符串的内容，可以使用<code>in</code>和<code>not in</code>来判断一个字符串是否包含另外一个字符串，我们也可以用<code>[]</code>和<code>[:]</code>运算符从字符串取出某个字符或某些字符。</p>
+<h2 id="拼接和重复"><a href="#拼接和重复" class="headerlink" title="拼接和重复"></a><strong>拼接和重复</strong></h2><p>下面的例子演示了使用<code>+</code>和<code>*</code>运算符来实现字符串的拼接和重复操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;hello&#x27;</span> + <span class="string">&#x27; &#x27;</span> + <span class="string">&#x27;world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s1)    <span class="comment"># hello world</span></span><br><span class="line">s2 = <span class="string">&#x27;!&#x27;</span> * <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(s2)    <span class="comment"># !!!</span></span><br><span class="line">s1 += s2     <span class="comment"># s1 = s1 + s2</span></span><br><span class="line"><span class="built_in">print</span>(s1)    <span class="comment"># hello world!!!</span></span><br><span class="line">s1 *= <span class="number">2</span>      <span class="comment"># s1 = s1 * 2</span></span><br><span class="line"><span class="built_in">print</span>(s1)    <span class="comment"># hello world!!!hello world!!!</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/2.png" alt="2"></p>
+<p>用<code>*</code>实现字符串的重复是非常有意思的一个运算符，在很多编程语言中，要表示一个有10个<code>a</code>的字符串，你只能写成<code>&quot;aaaaaaaaaa&quot;</code>，但是在Python中，你可以写成<code>&#39;a&#39; * 10</code>。你可能觉得<code>&quot;aaaaaaaaaa&quot;</code>这种写法也没有什么不方便的，那么想一想，如果字符<code>a</code>要重复100次或者1000次又会如何呢？</p>
+<h2 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a><strong>比较运算</strong></h2><p>对于两个字符串类型的变量，可以直接使用比较运算符比较两个字符串的相等性或大小。需要说明的是，因为字符串在计算机内存中也是以二进制形式存在的，那么字符串的大小比较比的是每个字符对应的编码的大小。例如<code>A</code>的编码是<code>65</code>， 而<code>a</code>的编码是<code>97</code>，所以<code>&#39;A&#39; &lt; &#39;a&#39;</code>的结果相当于就是<code>65 &lt; 97</code>的结果，很显然是<code>True</code>；而<code>&#39;boy&#39; &lt; &#39;bad&#39;</code>，因为第一个字符都是<code>&#39;b&#39;</code>比不出大小，所以实际比较的是第二个字符的大小，显然<code>&#39;o&#39; &lt; &#39;a&#39;</code>的结果是<code>False</code>，所以<code>&#39;boy&#39; &lt; &#39;bad&#39;</code>的结果也是<code>False</code>。如果不清楚两个字符对应的编码到底是多少，可以使用<code>ord</code>函数来获得，例如<code>ord(&#39;A&#39;)</code>的值是<code>65</code>，而<code>ord(&#39;昊&#39;)</code>的值是<code>26122</code>。下面的代码为大家展示了字符串的比较运算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;a whole new world&#x27;</span></span><br><span class="line">s2 = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s1 == s2, s1 &lt; s2)      <span class="comment"># False True</span></span><br><span class="line"><span class="built_in">print</span>(s2 == <span class="string">&#x27;hello world&#x27;</span>)    <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span>(s2 == <span class="string">&#x27;Hello world&#x27;</span>)    <span class="comment"># False</span></span><br><span class="line"><span class="built_in">print</span>(s2 != <span class="string">&#x27;Hello world&#x27;</span>)    <span class="comment"># True</span></span><br><span class="line">s3 = <span class="string">&#x27;骆昊&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">ord</span>(<span class="string">&#x27;骆&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;昊&#x27;</span>))               <span class="comment"># 39558 26122</span></span><br><span class="line">s4 = <span class="string">&#x27;王大锤&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">ord</span>(<span class="string">&#x27;王&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;大&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;锤&#x27;</span>))    <span class="comment"># 29579 22823 38180</span></span><br><span class="line"><span class="built_in">print</span>(s3 &gt; s4, s3 &lt;= s4)      <span class="comment"># True False</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/3.png" alt="3"></p>
+<p>需要强调一下的是，字符串的比较运算比较的是字符串的内容，Python中还有一个<code>is</code>运算符（身份运算符），如果用<code>is</code>来比较两个字符串，它比较的是两个变量对应的字符串是否在内存中相同的位置（内存地址），简单的说就是两个变量是否对应内存中的同一个字符串。看看下面的代码就比较清楚<code>is</code>运算符的作用了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">s2 = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">s3 = s2</span><br><span class="line"><span class="comment"># 比较字符串的内容</span></span><br><span class="line"><span class="built_in">print</span>(s1 == s2, s2 == s3)    <span class="comment"># True True</span></span><br><span class="line"><span class="comment"># 比较字符串的内存地址</span></span><br><span class="line"><span class="built_in">print</span>(s1 <span class="keyword">is</span> s2, s2 <span class="keyword">is</span> s3)    <span class="comment"># False True</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/4.png" alt="4"></p>
+<h2 id="成员运算"><a href="#成员运算" class="headerlink" title="成员运算"></a><strong>成员运算</strong></h2><p>Python中可以用<code>in</code>和<code>not in</code>判断一个字符串中是否存在另外一个字符或字符串，<code>in</code>和<code>not in</code>运算通常称为成员运算，会产生布尔值<code>True</code>或<code>False</code>，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;hello, world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;wo&#x27;</span> <span class="keyword">in</span> s1)    <span class="comment"># True</span></span><br><span class="line">s2 = <span class="string">&#x27;goodbye&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(s2 <span class="keyword">in</span> s1)      <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6python%E7%AC%AC%E5%9B%9B%E5%A4%A9.assets/5.png" alt="5"></p>
+<h2 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a><strong>获取字符串长度</strong></h2><p>获取字符串长度没有直接的运算符，而是使用内置函数<code>len</code>，我们在上节课的提到过这个内置函数，代码如下所示。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/20/BJDCTFdiff2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/20/BJDCTFdiff2/" class="post-title-link" itemprop="url">BJDCTFdiff2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-20 18:16:29" itemprop="dateCreated datePublished" datetime="2021-04-20T18:16:29+08:00">2021-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-21 10:25:13" itemprop="dateModified" datetime="2021-04-21T10:25:13+08:00">2021-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RE/" itemprop="url" rel="index"><span itemprop="name">RE</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/20/BJDCTFdiff2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/20/BJDCTFdiff2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="0x01-用EP打开，查看加壳没"><a href="#0x01-用EP打开，查看加壳没" class="headerlink" title="0x01 用EP打开，查看加壳没"></a><strong>0x01 用EP打开，查看加壳没</strong></h2><p><img src="BJDCTFdiff2.assets/0.png" alt="0"></p>
+<p>没有加壳</p>
+<hr>
+<h2 id="0x02-用IDA32位打开，F5反编译"><a href="#0x02-用IDA32位打开，F5反编译" class="headerlink" title="0x02 用IDA32位打开，F5反编译"></a><strong>0x02 用IDA32位打开，F5反编译</strong></h2><p><img src="BJDCTFdiff2.assets/3.png" alt="3"></p>
+<p>漏洞的地方只可能是  <strong><code>compare</code></strong></p>
+<hr>
+<h2 id="0x03-分析代码"><a href="#0x03-分析代码" class="headerlink" title="0x03 分析代码"></a>0x03 分析代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> v0; <span class="comment">// al@2</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> i; <span class="comment">// [sp+0h] [bp-8h]@1</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// [sp+4h] [bp-4h]@1</span></span><br><span class="line"></span><br><span class="line">  v3 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; buf2[i] + buf1[i] &amp;&amp; i &lt; <span class="number">0x400</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v0 = buf1[i];</span><br><span class="line">    <span class="keyword">if</span> ( v0 != buf2[i] )</span><br><span class="line">      <span class="keyword">return</span> v3 + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> ( v0 == <span class="number">10</span> )</span><br><span class="line">      ++v3;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>char型变量占1个字节，相当于unsigned byte，表示范围是0x0-0xff，两个char相加的范围就是0x0 - 0x1fe ，由于char型只能存储1个字节的数据，两个char相加产生的进位就会被忽略。**<code>char + char = 溢出</code>**  举个栗子，0x7d+0x83=0x100-&gt;0x0。</p>
+<p>所以如果buf2[i]+buf1[i]=0x100就会 <strong>终止</strong> for循环</p>
+<p>每次返回一个进行爆破即可</p>
+<h2 id="0x04-构造python脚本"><a href="#0x04-构造python脚本" class="headerlink" title="0x04 构造python脚本"></a><strong>0x04 构造python脚本</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> *</span><br><span class="line">fix = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0x100</span>):</span><br><span class="line">		payload = fix+<span class="built_in">chr</span>(i)</span><br><span class="line">		<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/tmp/ktql&#x27;</span>,<span class="string">&#x27;w+&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">			f.write(payload)</span><br><span class="line">		p = Popen([<span class="string">&#x27;/root/diff&#x27;</span>,<span class="string">&#x27;/tmp/ktql&#x27;</span>,<span class="string">&#x27;/root/flag&#x27;</span>],stdout=PIPE)</span><br><span class="line">		res = p.stdout.read()</span><br><span class="line">		<span class="keyword">if</span> res != <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">			fix+=<span class="built_in">chr</span>(<span class="number">0x100</span>-i)</span><br><span class="line">			<span class="built_in">print</span>(fix)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/4chan123" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;4chan123" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wenchuangan4@gmail.com" title="E-Mail → mailto:wenchuangan4@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCt9o_6y6BGqttzkObURXkOg" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCt9o_6y6BGqttzkObURXkOg" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hYy4YDKL98WMGGXEp5uoMBnn-gzGzoHsz',
+      appKey     : 'HalG51A7jL8JS7ll0WzWvYY0',
+      placeholder: "go for U",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

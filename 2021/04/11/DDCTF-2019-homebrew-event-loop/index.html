@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"360ak.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="有点意思的一道代码审计题  先简单串烧一下一些基本知识点 session in python  append in python  _str in python  flask的常用接收参数的方法  python路由    python文件源码12345678910111213141516171819202122232425262728293031323334353637383940414243">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDCTF 2019 homebrew event loop">
+<meta property="og:url" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有点意思的一道代码审计题  先简单串烧一下一些基本知识点 session in python  append in python  _str in python  flask的常用接收参数的方法  python路由    python文件源码12345678910111213141516171819202122232425262728293031323334353637383940414243">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/1.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/2.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/3.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/4.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/5.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/7.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/6.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/8.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/9.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/10.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/11.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/12.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/13.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/14.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/15.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/16.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/17.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/18.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/19.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/23.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/24.png">
+<meta property="og:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/25.png">
+<meta property="article:published_time" content="2021-04-11T14:33:52.000Z">
+<meta property="article:modified_time" content="2021-04-14T05:56:10.892Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="代码审计">
+<meta property="article:tag" content="Flask模板注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/DDCTF-2019-homebrew-event-loop.assets/1.png">
+
+<link rel="canonical" href="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>DDCTF 2019 homebrew event loop | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://360ak.github.io/2021/04/11/DDCTF-2019-homebrew-event-loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DDCTF 2019 homebrew event loop
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-11 22:33:52" itemprop="dateCreated datePublished" datetime="2021-04-11T22:33:52+08:00">2021-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-14 13:56:10" itemprop="dateModified" datetime="2021-04-14T13:56:10+08:00">2021-04-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WEB/" itemprop="url" rel="index"><span itemprop="name">WEB</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/11/DDCTF-2019-homebrew-event-loop/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/11/DDCTF-2019-homebrew-event-loop/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p> 有点意思的一道代码审计题</p>
+</blockquote>
+<h2 id="先简单串烧一下一些基本知识点"><a href="#先简单串烧一下一些基本知识点" class="headerlink" title="先简单串烧一下一些基本知识点"></a>先简单串烧一下一些基本知识点</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39968266/article/details/113968543">session in python</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34837388/article/details/112011783">append in python</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012193416/article/details/78115377">_str in python</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/baojiao/p/9336857.html">flask的常用接收参数的方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.yiibai.com/python_network_programming/python_routing.html">python路由</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="python文件源码"><a href="#python文件源码" class="headerlink" title="python文件源码"></a><strong>python文件源码</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, session, request, Response</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = <span class="string">&#x27;*********************&#x27;</span>  <span class="comment"># censored</span></span><br><span class="line">url_prefix = <span class="string">&#x27;/d5afe1f66147e857&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FLAG</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;*********************&#x27;</span>  <span class="comment"># censored</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trigger_event</span>(<span class="params">event</span>):</span> //trigger_event：标识触发事件，取值为 INSERT、UPDATE 或 DELETE；</span><br><span class="line">    session[<span class="string">&#x27;log&#x27;</span>].append(event)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(session[<span class="string">&#x27;log&#x27;</span>]) &gt; <span class="number">5</span>:</span><br><span class="line">        session[<span class="string">&#x27;log&#x27;</span>] = session[<span class="string">&#x27;log&#x27;</span>][-<span class="number">5</span>:]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(event) == <span class="built_in">type</span>([]):</span><br><span class="line">        request.event_queue += event</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        request.event_queue.append(event)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_mid_str</span>(<span class="params">haystack, prefix, postfix=<span class="literal">None</span></span>):</span></span><br><span class="line">    haystack = haystack[haystack.find(prefix)+<span class="built_in">len</span>(prefix):]</span><br><span class="line">    <span class="keyword">if</span> postfix <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        haystack = haystack[:haystack.find(postfix)]</span><br><span class="line">    <span class="keyword">return</span> haystack</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RollBackException</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute_event_loop</span>():</span></span><br><span class="line">    valid_event_chars = <span class="built_in">set</span>(</span><br><span class="line">        <span class="string">&#x27;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789:;#&#x27;</span>)</span><br><span class="line">    resp = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(request.event_queue) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># `event` is something like &quot;action:ACTION;ARGS0#ARGS1#ARGS2......&quot;</span></span><br><span class="line">        event = request.event_queue[<span class="number">0</span>]</span><br><span class="line">        request.event_queue = request.event_queue[<span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> event.startswith((<span class="string">&#x27;action:&#x27;</span>, <span class="string">&#x27;func:&#x27;</span>)):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> event:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> valid_event_chars:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            is_action = event[<span class="number">0</span>] == <span class="string">&#x27;a&#x27;</span></span><br><span class="line">            action = get_mid_str(event, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">            args = get_mid_str(event, action+<span class="string">&#x27;;&#x27;</span>).split(<span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                event_handler = <span class="built_in">eval</span>(</span><br><span class="line">                    action + (<span class="string">&#x27;_handler&#x27;</span> <span class="keyword">if</span> is_action <span class="keyword">else</span> <span class="string">&#x27;_function&#x27;</span>))</span><br><span class="line">                ret_val = event_handler(args)</span><br><span class="line">            <span class="keyword">except</span> RollBackException:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">                resp += <span class="string">&#x27;ERROR! All transactions have been cancelled. &lt;br /&gt;&#x27;</span></span><br><span class="line">                resp += <span class="string">&#x27;&lt;a href=&quot;./?action:view;index&quot;&gt;Go back to index.html&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">                session[<span class="string">&#x27;num_items&#x27;</span>] = request.prev_session[<span class="string">&#x27;num_items&#x27;</span>]</span><br><span class="line">                session[<span class="string">&#x27;points&#x27;</span>] = request.prev_session[<span class="string">&#x27;points&#x27;</span>]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">except</span> Exception, e:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">                <span class="comment"># resp += str(e) # only for debugging</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> ret_val <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = ret_val</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    resp += ret_val</span><br><span class="line">    <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> resp == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        resp = (<span class="string">&#x27;404 NOT FOUND&#x27;</span>, <span class="number">404</span>)</span><br><span class="line">    session.modified = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> resp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params">url_prefix+<span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">entry_point</span>():</span></span><br><span class="line">    querystring = urllib.unquote(request.query_string)</span><br><span class="line">    request.event_queue = []</span><br><span class="line">    <span class="keyword">if</span> querystring == <span class="string">&#x27;&#x27;</span> <span class="keyword">or</span> (<span class="keyword">not</span> querystring.startswith(<span class="string">&#x27;action:&#x27;</span>)) <span class="keyword">or</span> <span class="built_in">len</span>(querystring) &gt; <span class="number">100</span>:</span><br><span class="line">        querystring = <span class="string">&#x27;action:index;False#False&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;num_items&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> session:</span><br><span class="line">        session[<span class="string">&#x27;num_items&#x27;</span>] = <span class="number">0</span></span><br><span class="line">        session[<span class="string">&#x27;points&#x27;</span>] = <span class="number">3</span></span><br><span class="line">        session[<span class="string">&#x27;log&#x27;</span>] = []</span><br><span class="line">    request.prev_session = <span class="built_in">dict</span>(session)</span><br><span class="line">    trigger_event(querystring)</span><br><span class="line">    <span class="keyword">return</span> execute_event_loop()</span><br><span class="line"></span><br><span class="line"><span class="comment"># handlers/functions below --------------------------------------</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">view_handler</span>(<span class="params">args</span>):</span></span><br><span class="line">    page = args[<span class="number">0</span>]</span><br><span class="line">    html = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    html += <span class="string">&#x27;[INFO] you have &#123;&#125; diamonds, &#123;&#125; points now.&lt;br /&gt;&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">        session[<span class="string">&#x27;num_items&#x27;</span>], session[<span class="string">&#x27;points&#x27;</span>])</span><br><span class="line">    <span class="keyword">if</span> page == <span class="string">&#x27;index&#x27;</span>:</span><br><span class="line">        html += <span class="string">&#x27;&lt;a href=&quot;./?action:index;True%23False&quot;&gt;View source code&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">        html += <span class="string">&#x27;&lt;a href=&quot;./?action:view;shop&quot;&gt;Go to e-shop&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">        html += <span class="string">&#x27;&lt;a href=&quot;./?action:view;reset&quot;&gt;Reset&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> page == <span class="string">&#x27;shop&#x27;</span>:</span><br><span class="line">        html += <span class="string">&#x27;&lt;a href=&quot;./?action:buy;1&quot;&gt;Buy a diamond (1 point)&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> page == <span class="string">&#x27;reset&#x27;</span>:</span><br><span class="line">        <span class="keyword">del</span> session[<span class="string">&#x27;num_items&#x27;</span>]</span><br><span class="line">        html += <span class="string">&#x27;Session reset.&lt;br /&gt;&#x27;</span></span><br><span class="line">    html += <span class="string">&#x27;&lt;a href=&quot;./?action:view;index&quot;&gt;Go back to index.html&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_handler</span>(<span class="params">args</span>):</span></span><br><span class="line">    bool_show_source = <span class="built_in">str</span>(args[<span class="number">0</span>])</span><br><span class="line">    bool_download_source = <span class="built_in">str</span>(args[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">if</span> bool_show_source == <span class="string">&#x27;True&#x27;</span>:</span><br><span class="line"></span><br><span class="line">        source = <span class="built_in">open</span>(<span class="string">&#x27;eventLoop.py&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">        html = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> bool_download_source != <span class="string">&#x27;True&#x27;</span>:</span><br><span class="line">            html += <span class="string">&#x27;&lt;a href=&quot;./?action:index;True%23True&quot;&gt;Download this .py file&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">            html += <span class="string">&#x27;&lt;a href=&quot;./?action:view;index&quot;&gt;Go back to index.html&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> source:</span><br><span class="line">            <span class="keyword">if</span> bool_download_source != <span class="string">&#x27;True&#x27;</span>:</span><br><span class="line">                html += line.replace(<span class="string">&#x27;&amp;&#x27;</span>, <span class="string">&#x27;&amp;amp;&#x27;</span>).replace(<span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27;&amp;nbsp;&#x27;</span>*<span class="number">4</span>).replace(</span><br><span class="line">                    <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&amp;nbsp;&#x27;</span>).replace(<span class="string">&#x27;&lt;&#x27;</span>, <span class="string">&#x27;&amp;lt;&#x27;</span>).replace(<span class="string">&#x27;&gt;&#x27;</span>, <span class="string">&#x27;&amp;gt;&#x27;</span>).replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&lt;br /&gt;&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                html += line</span><br><span class="line">        source.close()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> bool_download_source == <span class="string">&#x27;True&#x27;</span>:</span><br><span class="line">            headers = &#123;&#125;</span><br><span class="line">            headers[<span class="string">&#x27;Content-Type&#x27;</span>] = <span class="string">&#x27;text/plain&#x27;</span></span><br><span class="line">            headers[<span class="string">&#x27;Content-Disposition&#x27;</span>] = <span class="string">&#x27;attachment; filename=serve.py&#x27;</span></span><br><span class="line">            <span class="keyword">return</span> Response(html, headers=headers)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> html</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        trigger_event(<span class="string">&#x27;action:view;index&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">buy_handler</span>(<span class="params">args</span>):</span></span><br><span class="line">    num_items = <span class="built_in">int</span>(args[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> num_items &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;invalid number(&#123;&#125;) of diamonds to buy&lt;br /&gt;&#x27;</span>.<span class="built_in">format</span>(args[<span class="number">0</span>])</span><br><span class="line">    session[<span class="string">&#x27;num_items&#x27;</span>] += num_items</span><br><span class="line">    trigger_event([<span class="string">&#x27;func:consume_point;&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">        num_items), <span class="string">&#x27;action:view;index&#x27;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consume_point_function</span>(<span class="params">args</span>):</span></span><br><span class="line">    point_to_consume = <span class="built_in">int</span>(args[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> session[<span class="string">&#x27;points&#x27;</span>] &lt; point_to_consume:</span><br><span class="line">        <span class="keyword">raise</span> RollBackException()</span><br><span class="line">    session[<span class="string">&#x27;points&#x27;</span>] -= point_to_consume</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_flag_function</span>(<span class="params">args</span>):</span></span><br><span class="line">    flag = args[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># return flag # GOTCHA! We noticed that here is a backdoor planted by a hacker which will print the flag, so we disabled it.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;You naughty boy! ;) &lt;br /&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag_handler</span>(<span class="params">args</span>):</span></span><br><span class="line">    <span class="keyword">if</span> session[<span class="string">&#x27;num_items&#x27;</span>] &gt;= <span class="number">5</span>:</span><br><span class="line">        <span class="comment"># show_flag_function has been disabled, no worries</span></span><br><span class="line">        trigger_event(<span class="string">&#x27;func:show_flag;&#x27;</span> + FLAG())</span><br><span class="line">    trigger_event(<span class="string">&#x27;action:view;index&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(debug=<span class="literal">False</span>, host=<span class="string">&#x27;0.0.0.0&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="0X01-开始代码审计-sweat"><a href="#0X01-开始代码审计-sweat" class="headerlink" title="0X01 开始代码审计 :sweat:"></a><strong>0X01 开始代码审计</strong> :sweat:</h2><ul>
+<li>首先我们从<a target="_blank" rel="noopener" href="https://www.yiibai.com/python_network_programming/python_routing.html">路由</a>入手，然后我们慢慢去看它调用了哪些函数，这里只用了一个<a target="_blank" rel="noopener" href="https://www.yiibai.com/python_network_programming/python_routing.html">路由</a></li>
+</ul>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/1.png" alt="1"></p>
+<ul>
+<li>这里顺便学习一下<a target="_blank" rel="noopener" href="https://www.cnblogs.com/baojiao/p/9336857.html">flask常用的接受参数方法</a></li>
+</ul>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/2.png" alt="2"></p>
+<ul>
+<li>当我们看到第81行就知道，<strong>querystring = urllib.unquote(request.query_string)</strong>  接收url? 后面的所有的值，然后进行url编码，传入参数<strong>querystring</strong> 中</li>
+</ul>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/3.png" alt="3"></p>
+<p>​         <strong>接着有个判断条件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> querystring == <span class="string">&#x27;&#x27;</span> <span class="keyword">or</span> (<span class="keyword">not</span> querystring.startswith(<span class="string">&#x27;action:&#x27;</span>)) <span class="keyword">or</span> <span class="built_in">len</span>(querystring) &gt; <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结合上面，如果没有传递任何参数为空或者不是以action开头</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">not</span> querystring.startswith(<span class="string">&#x27;action:&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>又或者上传参数长度大于100</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">or</span> <span class="built_in">len</span>(querystring) &gt; <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么就会进入条件判断语句，强化初始化参数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">querystring = <span class="string">&#x27;action:index;False#False&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>后面的内容就是我们买钻石的网站，我们先盲猜一下 <strong><code>num_items</code></strong>  是我们买东西的清单，如果我们什么都没买，就是初始化session中的列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session[<span class="string">&#x27;num_items&#x27;</span>] = <span class="number">0</span></span><br><span class="line">session[<span class="string">&#x27;points&#x27;</span>] = <span class="number">3</span></span><br><span class="line">session[<span class="string">&#x27;log&#x27;</span>] = []</span><br></pre></td></tr></table></figure>
+
+<p><strong>从现在来看，之前的一切都是在为我们买东西做准备，接收了我们的参数以后，如果我们没有买东西，就是我们初步登录的这个界面，将我们一切东西初始化。重点是下面三个</strong></p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/4.png" alt="4"></p>
+<hr>
+<p><strong><code>request.prev_session = dict(session)</code></strong>  这把刚刚初始化的session用字典的形式传给了这个参数到了90行，我们看到了一个函数 <strong><code>trigger_event</code></strong> ,我们在vscode上面跟进这个函数</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/5.png" alt="5"></p>
+<p>可以看到，实际上**<code>trigger_event</code><strong>的形参</strong><code>event</code>**  就是我们刚刚获得url?后面的字符串 <strong><code>querystring</code></strong>  。并且将它加入到 </p>
+<p><strong><code>session[&#39;log&#39;]</code></strong>  这个日志</p>
+<p>问题来了，下面两个if语句，是什么意思呢？</p>
+<ul>
+<li><p><strong>第一个</strong></p>
+<p> <img src="DDCTF-2019-homebrew-event-loop.assets/7.png" alt="7"></p>
+</li>
+</ul>
+<p>举个例子<img src="DDCTF-2019-homebrew-event-loop.assets/6.png" alt="6">  ，也就是要后面5个，前面都不要了</p>
+<ul>
+<li><strong>第二个</strong></li>
+</ul>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/8.png" alt="8"></p>
+<p>如果我们刚刚传入的参数也就是url?后面的字符串是列表类型，就合并。这两个列表 <strong><code>request.event_queue</code></strong>  和 **<code>event</code>**合并在一起。可能有人会问 <strong><code>request.event_queue</code></strong>  是什么，就在前面才定义 :cry:</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/9.png" alt="9"></p>
+<p>这个时候，你也许会问，它之前在路由定义的，现在函数里面能用吗？可以，因为它是全局变量，即使函数没有声明，也可以使用。 * 顺便说一下，列表也是可以合并的，a=[1,5] b=[3,4,5]   a+b=[1,3,4,5,5] *</p>
+<p>如果没有进行第二个if条件判断，就执行  <strong><code>request.event_queue.append(event)</code></strong>  加入到这个列表当中。</p>
+<hr>
+<p>这个时候我们来看91行的return返回函数  <strong><code>return execute_event_loop()</code></strong>  ,我们在vscode上面跟进函数</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/10.png" alt="10"></p>
+<p>首先初始化设置了两个参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">valid_event_chars = <span class="built_in">set</span>(</span><br><span class="line">        <span class="string">&#x27;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789:;#&#x27;</span>)</span><br><span class="line">    resp = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p>进入while循环吗，我们再来想一下request.enent_queque是什么东西？</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/11.png" alt="11"></p>
+<p>也就是我们url?后面的字符串，加入到这个列表中。以后不会再重复了</p>
+<hr>
+<p>while循环一进来就是这个</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/12.png" alt="12"></p>
+<p>就是将我们刚刚输入的字符串的列表第一个赋值给 <strong><code>event</code></strong>  ,然后删除了第一个值，因为第一个值已经给了 <strong><code>event</code></strong>  ,然后删除了第一个值，因为第一个值已经给了 <strong><code>event</code></strong>  ，没必要留着</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/13.png" alt="13"></p>
+<p>  <strong><code>  if not event.startswith((&#39;action:&#39;, &#39;func:&#39;)):</code></strong> </p>
+<p>如果我们第一个字符串开头不是  <strong><code>action </code></strong> 或 <strong><code>func</code></strong> ,就进入if判断语句继续。下一个for循环一次检验 <strong><code>event</code></strong>  中有没有字符，，可能有人忘了  <strong><code>valid_event_chars:</code></strong>  是什么..</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/14.png" alt="14"></p>
+<hr>
+<p>重点来了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>:</span><br><span class="line">            is_action = event[<span class="number">0</span>] == <span class="string">&#x27;a&#x27;</span></span><br><span class="line">            action = get_mid_str(event, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">            args = get_mid_str(event, action+<span class="string">&#x27;;&#x27;</span>).split(<span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                event_handler = <span class="built_in">eval</span>(</span><br><span class="line">                    action + (<span class="string">&#x27;_handler&#x27;</span> <span class="keyword">if</span> is_action <span class="keyword">else</span> <span class="string">&#x27;_function&#x27;</span>))</span><br><span class="line">                ret_val = event_handler(args)</span><br><span class="line">            <span class="keyword">except</span> RollBackException:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">                resp += <span class="string">&#x27;ERROR! All transactions have been cancelled. &lt;br /&gt;&#x27;</span></span><br><span class="line">                resp += <span class="string">&#x27;&lt;a href=&quot;./?action:view;index&quot;&gt;Go back to index.html&lt;/a&gt;&lt;br /&gt;&#x27;</span></span><br><span class="line">                session[<span class="string">&#x27;num_items&#x27;</span>] = request.prev_session[<span class="string">&#x27;num_items&#x27;</span>]</span><br><span class="line">                session[<span class="string">&#x27;points&#x27;</span>] = request.prev_session[<span class="string">&#x27;points&#x27;</span>]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">except</span> Exception, e:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">                <span class="comment"># resp += str(e) # only for debugging</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> ret_val <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    resp = ret_val</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    resp += ret_val</span><br><span class="line">    <span class="keyword">if</span> resp <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> resp == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        resp = (<span class="string">&#x27;404 NOT FOUND&#x27;</span>, <span class="number">404</span>)</span><br><span class="line">    session.modified = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
+
+<p>这个开头 <strong><code>is_action = event[0] == &#39;a&#39;</code></strong>  作用是什么，我们还不知道，先放着</p>
+<p>下面两个我们可以看到有同一个函数 <strong><code>get_mid_str</code></strong> </p>
+<p>​    **<code> action = get_mid_str(event, &#39;:&#39;, &#39;;&#39;)</code> **</p>
+<p>​      <strong><code>args = get_mid_str(event, action+&#39;;&#39;).split(&#39;#&#39;)</code></strong></p>
+<p>在vscode里面跟进这个函数</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/15.png" alt="15"></p>
+<p>这个函数的大概作用是</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/16.png" alt="16"></p>
+<p><strong><code>action</code></strong>  是由实际作用，因为 **<code>eval</code> **  函数会用到，args函数不知道有啥用，大佬的wp是：返回列表到args里，所以很明显，我们上传的参数就是action开头，才能上传过来</p>
+<p>大佬的wp更直观</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_mid_str</span>(<span class="params">haystack, prefix, postfix=<span class="literal">None</span></span>):</span></span><br><span class="line">    haystack = haystack[haystack.find(prefix)+<span class="built_in">len</span>(prefix):]</span><br><span class="line">    <span class="keyword">if</span> postfix <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        haystack = haystack[:haystack.find(postfix)]</span><br><span class="line">    <span class="keyword">return</span> haystack</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ACTION_handler</span>():</span><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">event = <span class="string">&#x27;action:ACTION;ARGS0#ARGS1#ARGS2&#x27;</span></span><br><span class="line">is_action = event[<span class="number">0</span>] == <span class="string">&#x27;a&#x27;</span></span><br><span class="line">action = get_mid_str(event, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;[!] action:&#x27;</span>,action</span><br><span class="line">args = get_mid_str(event, action+<span class="string">&#x27;;&#x27;</span>).split(<span class="string">&#x27;#&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;[!] args:&#x27;</span>,args</span><br><span class="line">event_handler = <span class="built_in">eval</span>(action + (<span class="string">&#x27;_handler&#x27;</span> <span class="keyword">if</span> is_action <span class="keyword">else</span> <span class="string">&#x27;_function&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;[!] event_handler:&#x27;</span>,event_handler</span><br></pre></td></tr></table></figure>
+
+<p>看到第九行我们的event是这个样子，我们运行会得到什么？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!] action: ACTION</span><br><span class="line">[!] args: [&#x27;ARGS0&#x27;, &#x27;ARGS1&#x27;, &#x27;ARGS2&#x27;]</span><br><span class="line">[!] event_handler: &lt;function ACTION_handler at 0x00000000035A4B38&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>  event_handler</code></strong>  函数就是用  <strong><code>eval</code></strong>  拼接，从而得到了处理函数， <strong><code>eveal</code> **  函数的本质就是将字符串str当成有效的表达式来求职并且返回计算结果，程序过滤了大部分的特殊符号，导致我们不能随意使用代码注入，不过由于 <strong><code>ARGS</code></strong>  使用 <strong><code>#</code></strong>  进行分割，而</strong><code>#</code> ** 在python代码中是注释符，在  <strong><code>action</code></strong>  中加入#，可以把后面的 <strong><code>_handler</code></strong>  注释掉。上面的代码用                              <strong><code>event = &#39;action:str#;ARGS0#ARGS1#ARGS2&#39;</code></strong> 进行测试</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!] action: str#</span><br><span class="line">[!] args: [&#x27;ARGS0&#x27;, &#x27;ARGS1&#x27;, &#x27;ARGS2&#x27;]</span><br><span class="line">[!] event_handler: &lt;type &#x27;str&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>其他没啥分析，我们找到可以控制的点</p>
+<p>我们去找找如何得到falg（因为我们有eval执行函数）</p>
+<p>我们看到FLAG函数是不带参数</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/17.png" alt="17"></p>
+<p>现在，我们可以控制  <strong><code>event_handler</code></strong>  运行指定的函数，不过还有一个问题是FLAG()函数是不带参数，而 <strong><code>args</code></strong>  为**<code>list</code>** ，直接传入 <strong><code>action:FLAG</code></strong>  ，将产生报错</p>
+<p>为什么其他参数不行？</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/18.png" alt="18"></p>
+<p>这里是参数args的</p>
+<p>那么没办法，只好分析源码,我们发现 <strong><code>show_flag_function</code></strong>  是没办法得到falg，因为return flag 被注释掉了，只是将它放到flag中。想要得到flag只能用**<code>get_flag_handler()</code><strong>可以得到flag，而得到flag的条件是是 <strong><code>if session[&#39;num_items&#39;] &gt;= 5:</code></strong>  ，于是我们进入题目界面，去买钻石💎，发现最多买3个，不能买5个以及5个以上。</strong>我们看一下买钻石的函数**</p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/19.png" alt="19"></p>
+<p>发现存在逻辑漏洞：就是我们的钱无论够不够，它都会给我们先加上，然后扣掉</p>
+<p>我们发现第148行，无论我们的钱够不够，都先给我们加上，之后再扣掉</p>
+<p>若让 <strong><code>eval()</code></strong>  去执行  <strong><code>trigger_event()</code></strong> ，并且在后面跟两个命令作为参数，分别是 <strong><code>buy</code></strong> 和 <strong><code>get_flag</code></strong> ，那么**<code>buy</code>**和  **<code>get_flag </code>**便先后进入队列。</p>
+<p>根据顺序会先执行 <strong><code>buy_handler()</code></strong> ，此时 <strong><code>consume_point</code></strong> 进入队列，排在 <strong><code>get_flag</code></strong> 之后，我们的目标达成。</p>
+<hr>
+<p>我们构造plyadload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">action:trigger_event%<span class="number">23</span>;action:buy;<span class="number">5</span>%23action:get_flag;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/23.png" alt="23"></p>
+<p>我们把得到的session放到KALI里面的flask-session-cookie-manager-master进行解密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 flask_session_cookie_manager3.py decode -c &#x27;session&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/24.png" alt="24"></p>
+<p><img src="DDCTF-2019-homebrew-event-loop.assets/25.png" alt="25"></p>
+<p><strong>func:show_flag;flag{d07646de-b436-4966-ad68-fd2fc9d9764f}</strong>                         :heavy_heart_exclamation: :heavy_heart_exclamation:  :heavy_heart_exclamation:  :heavy_heart_exclamation: ​</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 代码审计</a>
+              <a href="/tags/Flask%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/" rel="tag"><i class="fa fa-tag"></i> Flask模板注入</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/11/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9C%80%E8%BF%91%E5%AD%A6%E4%B9%A0%E7%8A%B6%E5%86%B5/" rel="prev" title="总结一下最近学习状况">
+      <i class="fa fa-chevron-left"></i> 总结一下最近学习状况
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/12/GWCTF-2019-pyre/" rel="next" title="GWCTF 2019 pyre">
+      GWCTF 2019 pyre <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E7%AE%80%E5%8D%95%E4%B8%B2%E7%83%A7%E4%B8%80%E4%B8%8B%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">先简单串烧一下一些基本知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E6%96%87%E4%BB%B6%E6%BA%90%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">python文件源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X01-%E5%BC%80%E5%A7%8B%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-sweat"><span class="nav-number">3.</span> <span class="nav-text">0X01 开始代码审计 :sweat:</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/4chan123" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;4chan123" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wenchuangan4@gmail.com" title="E-Mail → mailto:wenchuangan4@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCt9o_6y6BGqttzkObURXkOg" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCt9o_6y6BGqttzkObURXkOg" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'hYy4YDKL98WMGGXEp5uoMBnn-gzGzoHsz',
+      appKey     : 'HalG51A7jL8JS7ll0WzWvYY0',
+      placeholder: "go for U",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
